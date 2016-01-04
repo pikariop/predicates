@@ -3,7 +3,6 @@
 (defn sum-f [f g x ]
   (+ (f x) (g x)))
 
-
 (defn less-than [n]
   (fn [k] (< k n)))
 
@@ -27,17 +26,19 @@
   (every? whitespace? string))
 
 (defn has-award? [book award]
-  :-)
+  (contains? (:awards book) award))
 
 (defn HAS-ALL-THE-AWARDS? [book awards]
-  :-)
+  (every? (fn [award] (has-award? book award)) awards))
 
 (defn my-some [pred a-seq]
-  :-)
+  (first (map pred (filter pred a-seq))))
 
 (defn my-every? [pred a-seq]
-  :-)
+  (empty? (filter (complement pred) a-seq)))
 
 (defn prime? [n]
-  :-)
+  (let [pred (fn [x] (integer? (/ n x)))]
+    (not (some pred (range 2 n)))))
+
 ;^^
